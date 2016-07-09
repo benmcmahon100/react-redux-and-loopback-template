@@ -1,0 +1,8 @@
+{
+  "index": {
+    "method": "GET",
+    "path": "/",
+    "render": "index",
+    "title": "Title"
+  }
+}

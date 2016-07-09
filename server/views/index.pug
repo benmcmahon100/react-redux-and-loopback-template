@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .navbar-fixed
+    nav
+      .nav-wrapper
+        a(href = "#", class="brand-logo left"): h2 #{title}
+        ul(id="nav-mobile" class="right hide-on-med-and-down")
+          li: a(href="/") Home
+          li: a(href="/news") News
+  #root
+  script(async src = "/js/client.bundle.js")
