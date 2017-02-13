@@ -1,19 +1,30 @@
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
+
 
 module.exports = {
   devtool: 'eval',
-  entry: {
-    client: './app/app.js'
+  devServer: {
+  	hot: true
   },
+  entry: [
+    'webpack-hot-middleware/client',
+    './app/app.js'
+  ],
   output: {
     path: path.join(__dirname, 'client/js'),
-    filename: '[name].bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/js'
   },
+  plugins: [
+  	new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader'],
+        loaders: ['react-hot', 'babel-loader'],
+	exclude: '/node_modules',
         include: path.join(__dirname, './app')
       },
       {

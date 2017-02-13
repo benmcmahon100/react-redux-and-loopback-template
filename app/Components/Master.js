@@ -13,7 +13,7 @@ class Master extends Component {
   render() {
     return (
       <div className="Master">
-        
+      	<h4>React App Mounted Here</h4>  
       </div>
     );
   }

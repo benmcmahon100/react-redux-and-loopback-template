@@ -2,20 +2,20 @@ const path = require('path');
 const loopback = require('loopback');
 const boot = require('loopback-boot');
 const app = module.exports = loopback();
-const spawn = require('child_process').spawn;
-const WBP = spawn('node', ['webpackJob']);
+const webpack = require('webpack');
 
-WBP.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
-});
+const publicPath = path.resolve(__dirname, '../client');
+const webpackConfig = require('./../webpack.config');
+const compiler = webpack(webpackConfig);
 
-WBP.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
-});
+const webpackDevMiddleware = require("webpack-dev-middleware");
 
-/*WBP.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});*/
+app.use(webpackDevMiddleware(compiler, {
+	noInfo: false,
+        publicPath: webpackConfig.output.publicPath	  
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
