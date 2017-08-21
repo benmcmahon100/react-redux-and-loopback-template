@@ -1,6 +1,7 @@
 {
   "ignore": [
     "/client/js/*",
-    "/app/*"
+    "/app/*",
+    "/adminApp/*"
   ]
 }

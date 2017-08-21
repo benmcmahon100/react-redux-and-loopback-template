@@ -1,6 +1,6 @@
-export function sampleAction(dispatch, payload, err=null) {
+export function genericAction(type, dispatch, payload, err = null) {
   dispatch({
-    type: 'sampleAction',
+    type,
     err: err,
     payload
   });

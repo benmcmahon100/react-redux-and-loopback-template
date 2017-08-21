@@ -1,0 +1,66 @@
+{
+  "name": "user",
+  "description": "A model representing user",
+  "base": "User",
+  "idInjection": false,
+  "strict": true,
+  "options": {
+  },
+  "properties": {
+    "nonDefaultPassword": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "hidden": [
+    "nonDefaultPassword"
+  ],
+  "validations": [
+  ],
+  "relations": {
+    "roles": {
+      "type": "hasMany",
+      "model": "Role",
+      "foreignKey": "principalId",
+      "through": "RoleMapping"
+    }
+  },
+  "acls": [
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "Deny"
+    },
+    {
+      "property": "*",
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "scopes": {
+  },
+  "indexes": {
+  },
+  "methods": [
+  ],
+  "http": {
+  }
+}

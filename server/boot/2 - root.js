@@ -1,19 +1,21 @@
 'use strict';
 const fs = require('fs');
+const path = require('path');
 
-const routesPath = __dirname + '/../routes.json';
+const routesPath = path.join(__dirname, '..', 'routes.json');
 
 module.exports = function(server) {
-var router = server.loopback.Router();
+  let router = server.loopback.Router();
   fs.accessSync(
     routesPath,
+    // eslint-disable-next-line
     fs.R_OK | fs.W_OK,
     (err) => {
       throw (err);
     }
   );
 
-  var routesData =
+  let routesData =
     JSON.parse(
       fs.readFileSync(
         routesPath,
@@ -29,11 +31,11 @@ var router = server.loopback.Router();
         let routeParams = {};
 
         Object.keys(data).filter((key) => {
-          return([
+          return ([
             'path',
             'method',
             'render'
-          ].indexOf(key.toLowerCase()) < 0)
+          ].indexOf(key.toLowerCase()) < 0);
         }).forEach((key) => {
           routeParams[key] = data[key];
         });

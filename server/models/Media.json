@@ -1,0 +1,73 @@
+{
+  "name": "Media",
+  "description": "A model representing Media",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "strict": true,
+  "options": {
+  },
+  "properties": {
+    "name": {
+      "required": true,
+      "type": "string"
+    },
+    "path": {
+      "required": true,
+      "type": "string"
+    },
+    "relativePath": {
+      "required": true,
+      "type": "string"
+    }
+  },
+  "hidden": [
+  ],
+  "validations": [
+  ],
+  "relations": {
+    "Post": {
+      "type": "hasMany",
+      "model": "Post",
+      "foreignKey": "mediaId",
+      "through": "MediaLink"
+    }
+  },
+  "acls": [
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "Deny"
+    },
+    {
+      "property": "*",
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "property": "*",
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "scopes": {
+  },
+  "indexes": {
+  },
+  "methods": [
+  ],
+  "http": {
+  }
+}

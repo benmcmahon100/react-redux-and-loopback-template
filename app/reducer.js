@@ -1,13 +1,9 @@
-const initialState = {
+import {combineReducers} from 'redux';
 
-};
+import mainReducer from './Reducers/main';
 
-export default function(prevState = initialState, action) {
-  switch (action.type) {
-    case 'sampleAction':
-      return Object.assign({}, prevState, action.payload);
-      break;
-    default:
-      return(prevState);
-  }
-}
+const reducer = combineReducers({
+  mainReducer
+});
+
+export default reducer;
